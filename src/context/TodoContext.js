@@ -1,7 +1,7 @@
 import createDataContext from './createDataContext';
 import {navigate} from '../navigationRef';
 import  {getStore, fireStore} from '../api/Firebase';
-
+import React from 'react';
 
 //import {StackActions} from '@react-navigation/native';
 import moment from 'moment';
@@ -23,10 +23,10 @@ const todoReducer = (state, action) => {
     }
 }
 
-const getTodo = dispatch => async() => {
+const getTodo = dispatch => () => {
     //console.log('Calling../\../\..');
-    console.log('Function Rendered')
-    await getStore.onSnapshot(querySnapshot => {
+    
+    getStore.onSnapshot(querySnapshot => {
         const list = [];
         querySnapshot.forEach(doc => {
             const Date = (doc.data().date).toDate();
@@ -54,12 +54,11 @@ const getTodo = dispatch => async() => {
             //console.log(list);
             // const data = {...doc.data(), id:doc.id}
             // list={...list, data }
+            
         })
         dispatch({type: 'get_todo', payload: list})
     })
-    //return null
-    //console.log('list'+response);
-    //dispatch({type: 'get_todo', payload: response.data})
+    
 }
 
 const addTodo = dispatch => async(title, date, time, day, status) => {

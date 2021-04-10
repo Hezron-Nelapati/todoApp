@@ -12,13 +12,13 @@ const TodoScreen = ({navigation}) => {
 
     
 
-const testNotify = () => { PushNotification.localNotification({
-        channelId: "83",
-        title: "Local Notification", 
-        message: "My Notification Message", 
-        soundName: 'default', 
-        actions: '["Yes", "No"]'
-    })}
+// const testNotify = () => { PushNotification.localNotification({
+//         channelId: "83",
+//         title: "Local Notification", 
+//         message: "My Notification Message", 
+//         soundName: 'default', 
+//         actions: '["Yes", "No"]'
+//     })}
     //const onNotification = (notif) => {
     //     Alert.alert(notif.title, notif.message);
     // }
@@ -45,9 +45,9 @@ const testNotify = () => { PushNotification.localNotification({
     return(
         <SafeAreaView style={styles.container} forceInset={{top: 'always'}}>
             <ListTRenderer ListData={state} wWidth={wWidth} nav={navigation} delf={deleteTodo}/>
-            <Button
+            {/* <Button
                 onPress={testNotify}
-            />
+            /> */}
         </SafeAreaView>
     );
 }

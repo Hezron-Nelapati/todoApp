@@ -12,7 +12,9 @@ const AddTodoScreen = ({navigation}) => {
                 <TodoForm 
                     onSubmit={(title, date, time)=>{
                         const status = 'created'
-                        const day = moment().format('dddd')
+                        
+                        const day = moment(date).format('dddd')
+                        console.log('day '+day);
                         //console.log(title+" "+date+" "+time)
                         addTodo(title, date, time, day, status)
                         scheduleNotification(date, time, title)

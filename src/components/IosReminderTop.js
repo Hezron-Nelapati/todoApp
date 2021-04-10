@@ -1,18 +1,26 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native'
+import {View, StyleSheet, TouchableOpacity} from 'react-native'
 import RowCard from './RowCard';
 import moment from 'moment';
 
 
     
 
-const IosReminderTop = ({today, schedule}) => {
+const IosReminderTop = ({today, schedule, navigation, todayValues, scheduledValues}) => {
     
     return (
     <View style={styles.container}>
         <View style={styles.rowContainer}>
-            <RowCard name="calendar-today" title="Today" count={today}/>
-            <RowCard name="calendar-month-outline" title="Scheduled" count={schedule}/>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('List', {values: todayValues})}
+            >
+                <RowCard name="calendar-today" title="Today" count={today}/>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('List', {values: scheduledValues})}
+            >
+                <RowCard name="calendar-month-outline" title="Scheduled" count={schedule}/>
+            </TouchableOpacity>  
         </View>
     </View>
     );

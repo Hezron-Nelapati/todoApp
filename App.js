@@ -24,6 +24,7 @@ import WalkthroughScreen from './src/screens/WalkthroughScreen'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TodoForm from './src/components/TodoForm';
+import ListScreen from './src/screens/ListScreen';
 
 // const HomeFlow = createDrawerNavigator({
 //   Dashboard: DashboardScreen,
@@ -168,6 +169,7 @@ const DashboardFlow = () => {
       />
       <Stack.Screen name='Add' component={AddTodoScreen}/>
       <Stack.Screen name='Edit' component={EditTodoScreen}/>
+      <Stack.Screen name='List' component= {ListScreen} />
     </Stack.Navigator>
   );
 }

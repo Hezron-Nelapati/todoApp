@@ -9,7 +9,7 @@ import {Context as AuthContext} from '../context/AuthContext';
 import DateHook from '../components/DateHook';
 import moment from 'moment';
 import IosReminderTop from '../components/IosReminderTop';
-
+import getSchedule from '../components/GetSchedule';
 
 
 const DashboardScreen = ({navigation}) => {
@@ -17,73 +17,24 @@ const DashboardScreen = ({navigation}) => {
     const {state, getTodo, deleteTodo} = useContext(TodoContext);
     
     const {state:{email}} = useContext(AuthContext);
+    
 
     const [todayCount, setToday] = useState(0);
     const [scheduleCount, setSchedule] = useState(0);
     // const [todayList, setTodayList] = useState(null);
     // const [scheduleList, setScheduleList] =useState(null);
 
-    console.log('Today '+todayCount+' Schedule'+scheduleCount);
+    //console.log('Today '+todayCount+' Schedule'+scheduleCount);
 
-
-    const stateValues = state.filter((item)=> item.day === moment().format('dddd'))
-
-    
+    //console.log(state)
+    const stateValues =  state.filter((item)=>  item.date === moment().format('LL') )
+    const length = stateValues.length;
+    useMemo(() => {console.log('today memo rendered');setToday(length)}, [length])
+    const scheduled = useMemo(() => getSchedule(state),[state]);
+    useMemo(() => {console.log('scheduled memo rendered');setSchedule(scheduled.length)}, [scheduled.length])
     useEffect(()=>{
         getTodo()
-        const getToday = () => {
-            const today = moment().format("LL").toString();
-            var temp = [];
-            for(var i=0; i<state.length; i++){
-                if(state[i].date === today){
-                    temp.push(state[i]);
-                }
-            }
-            //setTodayList(temp);
-            //console.log(temp)
-            return temp.length;
-        }
-
-        const getSchedule = () => {
-            var temp = [];
-            const Sdate = moment().format('D').toString()
-            const Smonth = moment().format('M').toString()
-            const Syear = moment().format('YYYY').toString()
-
-            const date = parseInt(Sdate);
-            const month = parseInt(Smonth);
-            const year = parseInt(Syear);
-
-
-
-
-            for(var i=0; i<state.length; i++){
-                //console.log(state[i])
-                //console.log('=========')
-                const Year = parseInt(moment(state[i].Edate).format('YYYY').toString());
-                const Month = parseInt(moment(state[i].Edate).format('M').toString())
-                const Date = parseInt(moment(state[i].Edate).format('D').toString())
-                //console.log(date+' '+Date+' '+month+' '+Month+' '+year+' '+Year)
-
-                if(Year >= year){
-                    if(Month >= month){
-                        if(Date > date){
-                            temp.push(state[i])
-                        }
-                    }
-                }
-            }
-            //setScheduleList(temp)
-            return temp.length;
-        }
-
-        //console.log(state);
-        const tcount = getToday();
-        setToday(tcount);
-        const scount = getSchedule();
-        setSchedule(scount);
-
-    },[state])
+        },[])
 
     const wHeight = Dimensions.get('screen').height
     const wWidth = Dimensions.get('screen').width
@@ -103,6 +54,9 @@ const DashboardScreen = ({navigation}) => {
                 <IosReminderTop
                  today={todayCount}
                  schedule={scheduleCount}
+                 navigation={navigation}
+                 todayvalues={stateValues}
+                 scheduledValues={scheduled}
                 />
             </View>
 
