@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native'
 import RowCard from './RowCard';
-import moment from 'moment';
+
 
 
     
@@ -34,4 +34,4 @@ const styles =StyleSheet.create({
     },
     
 })
-export default IosReminderTop;
+export default React.memo(IosReminderTop);

@@ -1,10 +1,8 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {StyleSheet, Dimensions} from 'react-native';
-import {Button} from 'react-native-elements';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ListTRenderer from '../components/ListTRenderer';
 import {Context as TodoContext} from '../context/TodoContext';
-import PushNotification from 'react-native-push-notification'
 
 const TodoScreen = ({navigation}) => {
     const {state, getTodo, deleteTodo} = useContext(TodoContext)

@@ -1,4 +1,4 @@
-import React, {useEffect, useContext, useState, useCallback, useMemo} from 'react';
+import React, {useEffect, useContext, useState, useMemo} from 'react';
 import {View, StyleSheet, Dimensions, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Text} from 'react-native-elements';
